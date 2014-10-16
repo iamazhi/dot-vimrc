@@ -14,7 +14,7 @@ syntax on
 "--------
 " color scheme
 set background=dark
-color solarized
+" color solarized
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -98,8 +98,8 @@ let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
 " tabbar
-let g:Tb_MaxSize = 2
-let g:Tb_TabWrap = 1
+" let g:Tb_MaxSize = 2
+" let g:Tb_TabWrap = 1
 
 hi Tb_Normal guifg=white ctermfg=white
 hi Tb_Changed guifg=green ctermfg=green
@@ -110,7 +110,7 @@ hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 let g:EasyMotion_leader_key = '<Leader>'
 
 " Tagbar
-let g:tagbar_left=1
+let g:tagbar_left=0
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
@@ -147,7 +147,7 @@ let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
-let NERDTreeWinPos = "right"
+let NERDTreeWinPos = "left"
 
 " nerdcommenter
 let NERDSpaceDelims=1
@@ -155,7 +155,7 @@ let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 
 " ZenCoding
-let g:user_emmet_expandabbr_key='<C-j>'
+let g:user_emmet_expandabbr_key='<C-y>'
 
 " powerline
 "let g:Powerline_symbols = 'fancy'
@@ -205,6 +205,7 @@ nmap <F4> :IndentGuidesToggle<cr>
 nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
+let mapleader=","
 
 "------------------
 " Useful Functions
@@ -266,3 +267,18 @@ if has("gui_running")
     map <D-9> 9gt
     map <D-0> :tablast<CR>
 endif
+
+Bundle 'Blackrush/vim-gocode'
+
+map <leader>b :DoxBlock<CR>
+map <leader>a :DoxAuthor<CR>
+map <leader>d :Dox<CR>
+let g:DoxygenToolkit_authorName = "Azhi, chencongzhi520@gmail.com"
+let g:DoxygenToolkit_versionTag = "1.0"
+let s:licenseTag = "Copyright(C)\<enter>"
+let s:licenseTag = s:licenseTag . "For free\<enter>"
+let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_briefTag_pre = "@brief "
+let g:doxygen_enhanced_color=1
