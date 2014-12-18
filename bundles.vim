@@ -104,5 +104,7 @@ Bundle 'fisadev/fisa-vim-colorscheme'
 "--------------
 " Azhi
 "--------------
+Bundle 'vim-scripts/vim-json-bundle'
 Bundle 'DoxygenToolkit.vim'
+Bundle 'azhi.vim'
 filetype plugin indent on     " required!

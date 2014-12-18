@@ -205,7 +205,6 @@ nmap <F4> :IndentGuidesToggle<cr>
 nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
-let mapleader=","
 
 "------------------
 " Useful Functions
@@ -282,3 +281,8 @@ let g:DoxygenToolkit_licenseTag = s:licenseTag
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_briefTag_pre = "@brief "
 let g:doxygen_enhanced_color=1
+
+let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load /Users/user05/work/lisp/slime/start-swank.lisp\""' 
+
+set paste
+set hlsearch
