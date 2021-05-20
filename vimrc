@@ -57,15 +57,8 @@ set shiftwidth=4    " indent width
 " set smarttab
 set expandtab       " expand tab to space
 
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
-" syntax support
+" tax support
 autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 " js
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -97,6 +90,15 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
+" added by azhi
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:markdown_syntax_conceal = 0
+
+" added by azhi for feishu microapp
+au! BufNewFile,BufRead *.ttml setf html
+au! BufNewFile,BufRead *.ttss setf css
+
 " tabbar
 " let g:Tb_MaxSize = 2
 " let g:Tb_TabWrap = 1
@@ -110,6 +112,7 @@ hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 let g:EasyMotion_leader_key = '<Leader>'
 
 " Tagbar
+let g:tagbar_ctags_bin = 'ctags'   " added by azhi
 let g:tagbar_left=0
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
@@ -170,6 +173,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 set completeopt-=preview
 
+let g:snipMate = {"snippet_version": 1} "added by azhi
 imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
 imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
@@ -177,7 +181,7 @@ smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html,ttml,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
@@ -286,3 +290,33 @@ let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do scri
 
 set paste
 set hlsearch
+
+" vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+" nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+
+" added by azhi
+Bundle 'taglist.vim'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
+"let g:NERDTreeChDirMode = 2
+let g:ctrlp_working_path_mode = 'rw'
+"让taglist窗口出现在Vim的左边边
+let Tlist_Use_Right_Window = 1
+"当同时显示多个文件中的tag时，设置为1，可使taglist只显示当前文件tag，其它文件的tag都被折叠起来。
+let Tlist_File_Fold_Auto_Close = 1
+"只显示一个文件中的tag，默认为显示多个
+let Tlist_Show_One_File = 1
+"Tag的排序规则，以名字排序。默认是以在文件中出现的顺序排序
+let Tlist_Sort_Type = 'name'
+"Taglist窗口打开时，立刻切换为有焦点状态
+let Tlist_GainFocus_On_ToggleOpen = 1
+"如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Exit_OnlyWindow = 1
+"设置窗体宽度为32，可以根据自己喜好设置
+let Tlist_WinWidth = 32
+"“这里比较重要了，设置ctags的位置，不是指向MacOS自带的那个，而是我们用homebrew安装的那个
+"let Tlist_Ctags_Cmd ='/usr/bin/ctags'
+let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+"热键设置，我设置成Leader+t来呼出和关闭Taglist
+map <F7> :TlistToggle<CR>
