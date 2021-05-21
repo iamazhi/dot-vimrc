@@ -131,5 +131,3 @@ alias py='python3.6'
 alias gs="git status"
 alias gd="git diff --color"
 alias go='git add ./; git commit -a -m '\''adust'\''; git push'
-alias z1='ssh root@106.14.203.79' #Wtf22ort
-alias z1db='mysql -uroot -pWtf22ort -h 106.14.203.79 market'
