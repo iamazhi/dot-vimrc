@@ -320,3 +320,9 @@ let Tlist_WinWidth = 32
 let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 "热键设置，我设置成Leader+t来呼出和关闭Taglist
 map <F7> :TlistToggle<CR>
+
+" added for windows
+let g:snipMate = {'snippet_version':1} "added by azhi
+if has( 'mouse' )
+     set mouse-=a
+endif
